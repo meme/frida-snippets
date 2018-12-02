@@ -24,6 +24,6 @@ script.on('message', on_message)
 script.load()
 
 if SPAWN:
-	device.resume(pid)
+	device.resume(process)
 
 sys.stdin.read()
