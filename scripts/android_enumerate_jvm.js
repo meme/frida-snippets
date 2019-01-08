@@ -1,27 +1,29 @@
-var TARGET = 'com.example.Class'
+/* global Java */
 
-function isClassLoaded() {
+const TARGET = 'com.example.Class'
+
+function isClassLoaded () {
   var classes = Java.enumerateLoadedClassesSync()
 
-  var val = null
+  let val = null
 
-  classes.forEach(function(klass) {
-    if(klass == TARGET) {
+  classes.forEach((klass) => {
+    if (klass === TARGET) {
       val = klass
     }
   })
 
-  return val == null ? false : true
+  return val != null
 }
 
-if(Java.available) {
-  Java.perform(function() {
-    var classLoaded = isClassLoaded()
+if (Java.available) {
+  Java.perform(() => {
+    const classLoaded = isClassLoaded()
 
-    if(classLoaded) {
-      console.log(TARGET + ' found in heap')
+    if (classLoaded) {
+      console.log(`${TARGET} found in heap`)
     } else {
-      console.log(TARGET + ' is not loaded (expect failure)')
+      console.log(`${TARGET} is not loaded (expect failure)`)
     }
 
     // var e = Java.use('com.example.ExampleClass')
